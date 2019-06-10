@@ -21,6 +21,5 @@ module.exports = {
   plugins: [
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ template: "./index.html", inject: "body" })
-  ],
-  devServer: { hot: true, contentBase: "./dist" }
+  ]
 };
