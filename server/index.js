@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const { PORT, DATABASE_URL } = require("../config");
+const { PORT, DATABASE_URL } = require("./config");
 
 const app = express();
 
