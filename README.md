@@ -12,6 +12,8 @@ Minimalist boilerplate with MongoDB, Express, React, and Node.js
 
 ## How to use
 
+Before you get started, make sure to add your own configuration inside `.env` file in your project root folder.
+
 ```sh
 # build and run in production mode
 $ npm start
