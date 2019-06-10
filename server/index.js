@@ -7,7 +7,7 @@ const { PORT, DATABASE_URL } = require("../config");
 const app = express();
 
 mongoose
-  .connect(DATABASE_URL)
+  .connect(DATABASE_URL, { useNewUrlParser: true })
   .then(() => {
     if (process.env.NODE_ENV === "production") {
       app.get("/bundle.js", (req, res) => {
