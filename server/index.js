@@ -1,27 +1,31 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const path = require("path");
 
-const { PORT } = require("../config");
+const { PORT, DATABASE_URL } = require("../config");
 
 const app = express();
 
-if (process.env.NODE_ENV === "production") {
-  app.get("/bundle.js", (req, res) => {
-    res.sendFile(path.join(__dirname, "../dist/bundle.js"));
-  });
-} else {
-  const webpack = require("webpack");
-  const devMiddleware = require("webpack-dev-middleware");
-  const hotMiddleware = require("webpack-hot-middleware");
-  const webpackConfig = require("../webpack.config");
+mongoose
+  .connect(DATABASE_URL)
+  .then(() => {
+    if (process.env.NODE_ENV === "production") {
+      app.get("/bundle.js", (req, res) => {
+        res.sendFile(path.join(__dirname, "../dist/bundle.js"));
+      });
+    } else {
+      const webpack = require("webpack");
+      const devMiddleware = require("webpack-dev-middleware");
+      const hotMiddleware = require("webpack-hot-middleware");
+      const webpackConfig = require("../webpack.config");
 
-  const compiler = webpack(webpackConfig);
-  app.use(devMiddleware(compiler));
-  app.use(hotMiddleware(compiler));
-}
+      const compiler = webpack(webpackConfig);
+      app.use(devMiddleware(compiler));
+      app.use(hotMiddleware(compiler));
+    }
 
-app.get("*", (req, res) => {
-  res.send(`
+    app.get("*", (req, res) => {
+      res.send(`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,9 +39,11 @@ app.get("*", (req, res) => {
 <script type="text/javascript" src="/bundle.js"></script>
 </body>
 </html>
-  `);
-});
+    `);
+    });
 
-app.listen(PORT, () => {
-  console.log("> Server started at port " + PORT);
-});
+    app.listen(PORT, () => {
+      console.log("> Server started at port " + PORT);
+    });
+  })
+  .catch(err => console.log(err));

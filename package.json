@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.5.14",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "webpack": "^4.33.0",
