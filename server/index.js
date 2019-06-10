@@ -1,5 +1,4 @@
 const express = require("express");
-const webpack = require("webpack");
 const path = require("path");
 
 const { PORT } = require("../config");
@@ -11,6 +10,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../dist/bundle.js"));
   });
 } else {
+  const webpack = require("webpack");
   const devMiddleware = require("webpack-dev-middleware");
   const hotMiddleware = require("webpack-hot-middleware");
   const webpackConfig = require("../webpack.config");
