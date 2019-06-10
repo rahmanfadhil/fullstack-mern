@@ -1,25 +1,11 @@
-const path = require("path");
-const { HotModuleReplacementPlugin } = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+switch (process.env.NODE_ENV) {
+  case "prod":
+  case "production":
+    module.exports = require("./config/webpack.prod");
+    break;
 
-module.exports = {
-  mode: "development",
-  entry: ["webpack-hot-middleware/client", "./client/index.js"],
-  output: {
-    path: path.join(__dirname, "./dist"),
-    filename: "bundle.js"
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: "babel-loader"
-      }
-    ]
-  },
-  plugins: [
-    new HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: "./index.html", inject: "body" })
-  ]
-};
+  case "dev":
+  case "development":
+  default:
+    module.exports = require("./config/webpack.dev");
+}
