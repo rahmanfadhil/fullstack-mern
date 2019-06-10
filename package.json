@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "NODE_ENV=production webpack && NODE_ENV=production node server",
-    "start:dev": "node server/index.js"
+    "dev": "node server/index.js"
   },
   "author": "Rahman Fadhil <rhmnfadhil@gmail.com> (https://rahmanfadhil.com/)",
   "license": "MIT",
