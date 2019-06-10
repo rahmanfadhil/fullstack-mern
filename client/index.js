@@ -1,15 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
+import App from "./App";
 
-function App() {
-  const [counter, setCounter] = React.useState(0);
+const ROOT = document.getElementById("root");
+render(<App />, ROOT);
 
-  return (
-    <div>
-      <h1>Counter: {counter}</h1>
-      <button onClick={() => setCounter(counter + 1)}>Increase</button>
-    </div>
-  );
+if (module.hot) {
+  module.hot.accept("./App.js", () => {
+    const NewApp = require("./App").default;
+    render(<NewApp />, ROOT);
+  });
 }
-
-render(<App />, document.getElementById("root"));
