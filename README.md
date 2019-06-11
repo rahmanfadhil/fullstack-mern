@@ -21,3 +21,12 @@ $ npm start
 # start development server
 $ npm dev
 ```
+
+## Missing Features
+
+- CSS Loader
+- Testing (client & server)
+  - Jest
+  - Supertest (server)
+  - React Testing Library (client)
+- Environment variables in client
