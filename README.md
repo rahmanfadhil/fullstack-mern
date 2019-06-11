@@ -24,9 +24,13 @@ $ npm dev
 
 ## Missing Features
 
-- CSS Loader
+- CSS Loader (client)
 - Testing (client & server)
   - Jest
   - Supertest (server)
   - React Testing Library (client)
-- Environment variables in client
+- Environment variables (client)
+- PWA Support (client)
+- Authentication (server)
+- File Upload (client & server)
+- PropTypes (client)
