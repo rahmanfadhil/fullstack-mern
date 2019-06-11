@@ -1,4 +1,5 @@
 const path = require("path");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -9,5 +10,12 @@ module.exports = {
   },
   module: {
     rules: [{ test: /\.(js|jsx)$/, use: "babel-loader" }]
-  }
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      inject: "body",
+      template: "./config/template.html",
+      minify: { collapseWhitespace: true }
+    })
+  ]
 };
